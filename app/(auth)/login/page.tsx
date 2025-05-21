@@ -1,5 +1,6 @@
 import { LoginForm } from '@/components/auth/login-form'
 import { Card } from '@/components/ui/card'
+import { Suspense } from 'react'
 
 export default function LoginPage() {
   return (
@@ -14,7 +15,9 @@ export default function LoginPage() {
           </p>
         </div>
         <Card className="p-6">
-          <LoginForm />
+          <Suspense fallback={<div>Carregando...</div>}>
+            <LoginForm />
+          </Suspense>
         </Card>
       </div>
     </div>

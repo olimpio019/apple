@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions)
@@ -15,11 +17,16 @@ export async function GET() {
       select: {
         id: true,
         name: true,
-        email: true
+        email: true,
+        role: true,
+        createdAt: true,
+        _count: {
+          select: {
+            products: true,
+            purchases: true,
+          },
+        },
       },
-      orderBy: {
-        name: 'asc'
-      }
     })
 
     return NextResponse.json(users)
