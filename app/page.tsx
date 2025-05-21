@@ -5,13 +5,14 @@ import { prisma } from '@/lib/prisma'
 import BannerPrincipal from '@/components/BannerPrincipal'
 import Categorias from '@/components/Categorias'
 import Novidades from '@/components/Novidades'
+import { Status } from '@prisma/client'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
 
   const products = await prisma.product.findMany({
     where: {
-      status: 'ACTIVE',
+      status: Status.ACTIVE,
     },
     include: {
       seller: {
