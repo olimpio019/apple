@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/product-card'
+import { Condition } from '@prisma/client'
 
 interface SearchPageProps {
   searchParams: {
@@ -52,7 +53,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     where.AND.push({ name: { contains: category, mode: 'insensitive' } })
   }
   if (condition) {
-    where.AND.push({ condition: condition.toUpperCase() })
+    where.AND.push({ condition: condition.toUpperCase() as Condition })
   }
 
   const products = await prisma.product.findMany({
