@@ -12,7 +12,7 @@ export default async function Home() {
 
   const products = await prisma.product.findMany({
     where: {
-      status: Status.ACTIVE,
+      status: Status.AVAILABLE,
     },
     include: {
       seller: {
