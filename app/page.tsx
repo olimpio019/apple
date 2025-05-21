@@ -1,15 +1,39 @@
-import { Header } from '@/components/Header'
-import { BannerPrincipal } from '@/components/BannerPrincipal'
-import { Categorias } from '@/components/Categorias'
-import { Novidades } from '@/components/Novidades'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
+import { authOptions } from '@/lib/auth'
+import { prisma } from '@/lib/prisma'
+import BannerPrincipal from '@/components/BannerPrincipal'
+import Categorias from '@/components/Categorias'
+import Novidades from '@/components/Novidades'
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions)
+
+  const products = await prisma.product.findMany({
+    where: {
+      status: 'ACTIVE',
+    },
+    include: {
+      seller: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 8,
+  })
+
   return (
-    <main className="min-h-screen bg-white">
-      <Header />
+    <main className="flex-1">
       <BannerPrincipal />
-      <Categorias />
-      <Novidades />
+      <div className="container py-8 space-y-8">
+        <Categorias />
+        <Novidades products={products} />
+      </div>
     </main>
   )
 } 

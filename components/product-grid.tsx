@@ -1,54 +1,20 @@
 'use client'
 
 import { ProductCard } from './product-card'
-import { useEffect, useState } from 'react'
+import { Product } from '@prisma/client'
 
-type Product = {
-  id: string
-  name: string
-  description: string
-  price: number
-  images: string[]
-  condition: 'NEW' | 'USED'
+type ProductWithSeller = Product & {
   seller: {
     name: string
     image: string | null
   }
 }
 
-export function ProductGrid() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+interface ProductGridProps {
+  products: ProductWithSeller[]
+}
 
-  useEffect(() => {
-    async function loadProducts() {
-      try {
-        const response = await fetch('http://localhost:3000/api/products')
-        if (!response.ok) {
-          throw new Error('Erro ao carregar produtos')
-        }
-        const data = await response.json()
-        setProducts(data)
-      } catch (error) {
-        console.error('Erro ao carregar produtos:', error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    loadProducts()
-  }, [])
-
-  if (isLoading) {
-    return (
-      <div className="text-center py-12">
-        <h3 className="text-lg font-medium text-muted-foreground">
-          Carregando produtos...
-        </h3>
-      </div>
-    )
-  }
-
+export function ProductGrid({ products }: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div className="text-center py-12">
