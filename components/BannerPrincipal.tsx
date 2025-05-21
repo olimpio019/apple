@@ -1,12 +1,13 @@
-export function BannerPrincipal() {
+export default function BannerPrincipal() {
   return (
-    <section className="w-full bg-gray-50 py-12 flex flex-col items-center">
-      <h2 className="text-3xl md:text-5xl font-bold text-gray-900 text-center">
-        Loja. O melhor jeito de comprar o que você ama.
-      </h2>
-      <p className="text-lg text-gray-600 mt-4 text-center">
-        Descubra as novidades e os produtos mais desejados da Apple.
-      </p>
-    </section>
+    <div className="relative h-[400px] w-full overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-center text-white">
+          <h1 className="text-4xl font-bold mb-4">Apple Marketplace</h1>
+          <p className="text-xl">Encontre os melhores produtos Apple</p>
+        </div>
+      </div>
+    </div>
   )
 } 
