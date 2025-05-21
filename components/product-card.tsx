@@ -12,7 +12,7 @@ type ProductCardProps = {
     description: string
     price: number
     images: string[]
-    condition: 'NEW' | 'USED'
+    condition: string
     seller: {
       name: string
       image: string | null
