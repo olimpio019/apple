@@ -21,11 +21,7 @@ import {
 } from '@/components/ui/alert-dialog'
 
 const deleteAccountSchema = z.object({
-  confirmText: z
-    .string()
-    .refine((value) => value === 'EXCLUIR', {
-      message: 'Digite EXCLUIR para confirmar',
-    }),
+  confirmText: z.literal('EXCLUIR'),
 })
 
 type DeleteAccountFormValues = z.infer<typeof deleteAccountSchema>
