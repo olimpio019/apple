@@ -39,7 +39,6 @@ export default async function SalesPage() {
 
   return (
     <div className="container max-w-4xl py-8">
-      <div className="mb-4 p-2 bg-yellow-100 text-yellow-800 rounded">ID do usuário logado: {session.user.id}</div>
       <div className="space-y-6">
         {/* Carteira/SALDO */}
         <div>
