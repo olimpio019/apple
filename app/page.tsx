@@ -61,7 +61,7 @@ export default async function Home() {
         <BannerPrincipal />
         <div className="container py-8 space-y-8">
           <Categorias />
-          <ProdutosDestaque products={featuredProducts} />
+          <ProdutosDestaque produtos={featuredProducts} />
           <Novidades products={products} />
         </div>
       </main>
