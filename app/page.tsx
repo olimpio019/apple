@@ -8,6 +8,7 @@ import Novidades from '@/components/Novidades'
 import { Status } from '@prisma/client'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import ProfileMenu from '@/components/ProfileMenu'
 
 const LogoutButton = dynamic(() => import('@/components/LogoutButton'), { ssr: false })
 
@@ -49,14 +50,7 @@ export default async function Home() {
             </Link>
           </>
         ) : (
-          <div className="flex gap-2">
-            <Link href="/profile">
-              <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                Perfil
-              </button>
-            </Link>
-            <LogoutButton />
-          </div>
+          <ProfileMenu />
         )}
       </div>
       <BannerPrincipal />
