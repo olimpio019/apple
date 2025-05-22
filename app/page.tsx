@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma'
 import BannerPrincipal from '@/components/BannerPrincipal'
 import Categorias from '@/components/Categorias'
 import Novidades from '@/components/Novidades'
+import ProdutosDestaque from '@/components/ProdutosDestaque'
 import { Status } from '@prisma/client'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -35,6 +36,24 @@ export default async function Home() {
     take: 8,
   })
 
+  const featuredProducts = await prisma.product.findMany({
+    where: {
+      status: Status.AVAILABLE,
+    },
+    include: {
+      seller: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    take: 4,
+  })
+
   return (
     <>
       <Header />
@@ -42,6 +61,7 @@ export default async function Home() {
         <BannerPrincipal />
         <div className="container py-8 space-y-8">
           <Categorias />
+          <ProdutosDestaque products={featuredProducts} />
           <Novidades products={products} />
         </div>
       </main>

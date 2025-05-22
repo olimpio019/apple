@@ -30,6 +30,7 @@ model Product {
   condition   String   @default("NEW")
   images      String[]
   status      Status     @default(AVAILABLE)
+  views       Int        @default(0)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   sellerId    String
