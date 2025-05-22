@@ -33,6 +33,7 @@ export default async function PurchasesPage() {
 
   return (
     <div className="container max-w-4xl py-8">
+      <div className="mb-4 p-2 bg-yellow-100 text-yellow-800 rounded">ID do usuário logado: {session.user.id}</div>
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold">Minhas Compras</h1>
