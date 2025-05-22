@@ -26,7 +26,24 @@ export default function ProfileMenu() {
     };
   }, [open]);
 
-  if (!session?.user) return null;
+  if (!session?.user) {
+    return (
+      <div className="flex items-center gap-4">
+        <Link
+          href="/login"
+          className="text-blue-700 hover:text-blue-900 font-medium"
+        >
+          Entrar
+        </Link>
+        <Link
+          href="/register"
+          className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition-colors"
+        >
+          Cadastrar
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="relative" ref={menuRef}>
