@@ -8,6 +8,9 @@ const nextConfig = {
         pathname: '/f/**',
       },
     ],
+    domains: [
+      'c2psaktfgy.ufs.sh',
+    ],
   },
 }
 

@@ -9,6 +9,7 @@ import { Status } from '@prisma/client'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import ProfileMenu from '@/components/ProfileMenu'
+import SearchBar from '@/components/SearchBar'
 
 const LogoutButton = dynamic(() => import('@/components/LogoutButton'), { ssr: false })
 
@@ -54,6 +55,7 @@ export default async function Home() {
         )}
       </div>
       <BannerPrincipal />
+      <SearchBar />
       <div className="container py-8 space-y-8">
         <Categorias />
         <Novidades products={products} />
